@@ -45,7 +45,7 @@ class World():
         return neighbour
 
     def mostrar(self):
-        c.create_rectangle(0,0,1000,1000,fill="white")
+        c.create_rectangle(0,0,600,600,fill="white")
         for i in self.aliveCells:
             i[0] *= 10
             i[1] *= 10
@@ -54,7 +54,7 @@ class World():
 
     def checkNeighbours(self):
         temp=[]
-       # self.createCells(temp)
+        self.createCells(temp)
         self.aliveCells=[]
         for i in range(1,self.tamX-2):
             for j in range(1,self.tamY-2):
@@ -101,24 +101,24 @@ def end():
     window.destroy()
 
 def create_grid(event=None):
-    w = c.winfo_width() # Get current width of canvas
-    h = c.winfo_height() # Get current height of canvas
+    w = c.winfo_width()-20 # Get current width of canvas
+    h = c.winfo_height()-20 # Get current height of canvas
     c.delete('grid_line') # Will only remove the grid_line
 
     # Creates all vertical lines at intevals of 100
-    for i in range(0, w, 10):
-        c.create_line([(i, 0), (i, h)], tag='grid_line')
+    for i in range(20, w, 10):
+        c.create_line([(i, 20), (i, h)], tag='grid_line')
 
     # Creates all horizontal lines at intevals of 100
-    for i in range(0, h, 10):
-        c.create_line([(0, i), (w, i)], tag='grid_line')
+    for i in range(20, h, 10):
+        c.create_line([(20, i), (w, i)], tag='grid_line')
 ######################################################
-w=World(40,40)
+w=World(60,60)
 w.createCells(w.cells)
 window=Tk()
 window.title("Game of life")
-window.geometry("1200x1000")
-c=Canvas(window,width=1000,height=1000)
+window.geometry("800x600")
+c=Canvas(window,width=600,height=600)
 c.place(x=200,y=0)
 c.bind("<Button-1>", createCellWithClick)
 c.bind("<Button-3>", deleteCellWithClick)
